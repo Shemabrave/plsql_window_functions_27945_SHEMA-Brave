@@ -62,4 +62,49 @@ INSERT INTO sales VALUES
 
 INSERT INTO sales VALUES
 (1005, 105, 'Ethan Wilson', DATE '2024-04-12', 148000);
+SELECT 
+    s.sale_id,
+    s.sale_date,
+    s.sale_amount,
+    s.client_name,
+    p.property_name,
+    p.property_type,
+    r.region_name
+FROM sales s
+INNER JOIN properties p ON s.property_id = p.property_id
+INNER JOIN regions r ON p.region_id = r.region_id;
+
+SELECT 
+    c.client_name,
+    s.sale_id
+FROM clients c
+LEFT JOIN sales s ON c.client_name = s.client_name
+WHERE s.sale_id IS
+
+SELECT 
+    p.property_name,
+    p.property_type,
+    s.sale_id,
+    s.sale_date
+FROM sales s
+RIGHT JOIN properties p ON s.property_id = p.property_id
+WHERE s.sale_id IS NULL;
+
+SELECT 
+    c.client_name,
+    p.property_name,
+    s.sale_id
+FROM clients c
+FULL OUTER JOIN sales s ON c.client_name = s.client_name
+FULL OUTER JOIN properties p ON s.property_id = p.property_id;
+
+SELECT 
+    p1.property_name AS property_1,
+    p2.property_name AS property_2,
+    r.region_name
+FROM properties p1
+INNER JOIN properties p2 ON p1.region_id = p2.region_id
+    AND p1.property_id < p2.property_id
+INNER JOIN regions r ON p1.region_id = r.region_id;
+
 
