@@ -1,1 +1,65 @@
+CREATE TABLE regions (
+    region_id NUMBER NOT NULL,
+    region_name VARCHAR2(100) NOT NULL,
+
+    CONSTRAINT pk_regions PRIMARY KEY (region_id)
+);
+INSERT INTO regions VALUES (1, 'North');
+INSERT INTO regions VALUES (2, 'South');
+INSERT INTO regions VALUES (3, 'East');
+INSERT INTO regions VALUES (4, 'West');
+
+CREATE TABLE properties (
+    property_id NUMBER NOT NULL,
+    property_name VARCHAR2(150) NOT NULL,
+    property_type VARCHAR2(50),
+    region_id NUMBER NOT NULL,
+    listing_price NUMBER(12,2),
+
+    CONSTRAINT pk_properties PRIMARY KEY (property_id),
+    CONSTRAINT fk_properties_regions
+        FOREIGN KEY (region_id)
+        REFERENCES regions(region_id)
+);
+INSERT INTO properties VALUES
+(101, 'Green Valley Apartments', 'Residential', 1, 120000);
+
+INSERT INTO properties VALUES
+(102, 'Sunset Villas', 'Residential', 2, 180000);
+
+INSERT INTO properties VALUES
+(103, 'Downtown Office Plaza', 'Commercial', 3, 350000);
+
+INSERT INTO properties VALUES
+(104, 'Lakeside Mall', 'Commercial', 4, 500000);
+
+INSERT INTO properties VALUES
+(105, 'Hilltop Residences', 'Residential', 1, 150000);
+
+CREATE TABLE sales (
+    sale_id NUMBER NOT NULL,
+    property_id NUMBER NOT NULL,
+    client_name VARCHAR2(100),
+    sale_date DATE,
+    sale_amount NUMBER(12,2),
+
+    CONSTRAINT pk_sales PRIMARY KEY (sale_id),
+    CONSTRAINT fk_sales_properties
+        FOREIGN KEY (property_id)
+        REFERENCES properties(property_id)
+);
+INSERT INTO sales VALUES
+(1001, 101, 'Alice Johnson', DATE '2024-01-15', 118000);
+
+INSERT INTO sales VALUES
+(1002, 102, 'Brian Smith', DATE '2024-02-10', 175000);
+
+INSERT INTO sales VALUES
+(1003, 103, 'Charles Brown', DATE '2024-03-05', 340000);
+
+INSERT INTO sales VALUES
+(1004, 101, 'Diana Miller', DATE '2024-03-20', 119500);
+
+INSERT INTO sales VALUES
+(1005, 105, 'Ethan Wilson', DATE '2024-04-12', 148000);
 
