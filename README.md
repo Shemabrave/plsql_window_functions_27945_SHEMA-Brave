@@ -80,6 +80,3 @@ Improves forecasting accuracy and helps leadership make informed investment and 
 # Database Schema Design (Three Related Tables)
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/13e76ea5-03ea-44c8-be22-4594b0faf91a" />
 
-# SQLJOINs IMPLEMENTATION
-
-
